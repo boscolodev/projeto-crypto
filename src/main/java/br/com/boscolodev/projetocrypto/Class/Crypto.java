@@ -1,6 +1,7 @@
 package br.com.boscolodev.projetocrypto.Class;
 
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Crypto {
@@ -8,10 +9,10 @@ public class Crypto {
 	private String rede;
 	private String sigla;
 	private LocalDateTime dt_cadastro;
-	
+
 	public Crypto() {
 	}
-	
+
 	public Crypto(String rede, String sigla, LocalDateTime dt_cadastro) {
 		super();
 		this.rede = rede;
@@ -44,7 +45,7 @@ public class Crypto {
 	}
 
 	public void cadastrarCrypto() {
-		Scanner scan =  new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		System.out.println("Digite a Rede: ");
 		System.out.println(scan.nextLine());
 		System.out.println("Digite a Sigla: ");
@@ -52,6 +53,22 @@ public class Crypto {
 		System.out.println(LocalDateTime.now());
 		scan.close();
 	}
-	
-	
+
+	public void alterarCrypto(String rede, String sigla, LocalDateTime dt_Alteracao) {
+		this.rede = rede;
+		this.sigla = sigla;
+		this.dt_cadastro = dt_Alteracao;
+		System.out.println("Dados Alterados com Sucesso !");
+		System.out.println("Rede: " + getRede());
+		System.out.println("Sigla: " + getSigla());
+		System.out.println("Data Alteração: " + getDt_cadastro());
+
+	}
+
+	public void consultarCrypto() {
+		System.out.println("Dados Alterados com Sucesso !");
+		System.out.println("Rede: " + getRede());
+		System.out.println("Sigla: " + getSigla());
+		System.out.println("Data Alteração: " + getDt_cadastro());
+	}
 }
