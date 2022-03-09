@@ -28,6 +28,7 @@ public class Main {
 				break;
 			}
 			case 2: {
+				crypto.pesquisarPorNome();
 				break;
 			}
 			case 3: {
