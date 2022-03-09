@@ -9,7 +9,8 @@ public class Main {
 
 		Scanner scan = new Scanner(System.in);
 		Integer opcao = 0;
-
+		Crypto crypto = new Crypto();
+		
 		while (opcao != 5) {
 
 			System.out.println("------ Menu ------");
@@ -23,25 +24,27 @@ public class Main {
 
 			switch (opcao) {
 			case 1: {
-
+				crypto.cadastrarCrypto();
+				break;
 			}
 			case 2: {
-				Crypto crypto = new Crypto();
-				crypto.cadastrarCrypto();
-
+				break;
 			}
 			case 3: {
-
+				break;
 			}
 			case 4: {
-
+				crypto.listarCrypto();
+				break;
 			}
 			case 5: {
-
+				break;
 			}
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + opcao);
 			}
+			
+			
 		}
 	}
 

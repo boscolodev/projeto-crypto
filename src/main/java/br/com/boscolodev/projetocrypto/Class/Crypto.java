@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
+
 public class Crypto {
 
 	private Long id;
@@ -51,11 +52,10 @@ public class Crypto {
 	}
 
 	public void cadastrarCrypto() {
-		id += 1;
+		System.out.println("Digite o ID: "); id = scan.nextLong();
 		System.out.println("Digite a Rede: "); rede = scan.next();
 		System.out.println("Digite a Silga: "); sigla = scan.next();
 		dt_cadastro = LocalDateTime.now();
-		
 		list.add(new Crypto(id, rede, sigla, dt_cadastro));
 	}
 
@@ -63,7 +63,14 @@ public class Crypto {
 
 	}
 
-	public void consultarCrypto() {
+	public void listarCrypto() {
+		for (Crypto crypto : list) {
+			System.out.println("ID: "+crypto.id);
+			System.out.println("Rede: "+crypto.rede);
+			System.out.println("Sigla: "+crypto.sigla);
+			System.out.println("Data Alteração: "+crypto.dt_cadastro);
+			
+		}
 
 	}
 }
