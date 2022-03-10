@@ -2,6 +2,8 @@ package br.com.boscolodev.projetocrypto.Class;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -68,10 +70,26 @@ public class Crypto {
 		list.add(new Crypto(id, rede, sigla, dt_cadastro));
 	}
 
-	public void alterarCrypto(String rede, String sigla, LocalDateTime dt_Alteracao) {
+	// Deleta moeda por ID
+	public void deleteById() {
+		System.out.println("Digite o Id para ser deletado: ");
+		Long id = scan.nextLong();
+		Integer i = -1;
+
+		for (Crypto crypto : list) {
+			i++;
+			if (crypto.getId().equals(id)) {
+				list.remove(i);
+				System.out.println("Posicao do Array: " + i);
+				System.out.println("Tentando Remover ID: " + id);
+
+				System.out.println("Moeda: " + crypto.getSigla() + " removida com sucesso.");
+			}
+		}
 
 	}
 
+	// Pesquisa moeda por Sigla
 	public void pesquisarPorNome() {
 		System.out.println("Digite a Sigla para Pesquisa: ");
 		String nome = scan.next();

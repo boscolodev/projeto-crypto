@@ -32,6 +32,7 @@ public class Main {
 				break;
 			}
 			case 3: {
+				crypto.deleteById();
 				break;
 			}
 			case 4: {
@@ -39,6 +40,7 @@ public class Main {
 				break;
 			}
 			case 5: {
+				scan.close();
 				break;
 			}
 			default:
