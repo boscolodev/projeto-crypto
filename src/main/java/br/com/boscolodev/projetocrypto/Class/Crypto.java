@@ -2,9 +2,8 @@ package br.com.boscolodev.projetocrypto.Class;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Crypto {
@@ -59,6 +58,28 @@ public class Crypto {
 		this.id = id;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Crypto other = (Crypto) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "Crypto [id=" + id + ", rede=" + rede + ", sigla=" + sigla + "]";
+	}
+
 	public void cadastrarCrypto() {
 		System.out.println("Digite o ID: ");
 		id = scan.nextLong();
@@ -74,16 +95,20 @@ public class Crypto {
 	public void deleteById() {
 		System.out.println("Digite o Id para ser deletado: ");
 		Long id = scan.nextLong();
-		Integer i = -1;
-
+		
+		
 		for (Crypto crypto : list) {
-			i++;
+
 			if (crypto.getId().equals(id)) {
-				list.remove(i);
-				System.out.println("Posicao do Array: " + i);
+
+				System.out.println(crypto.toString());
+				list.remove(crypto);
+				
+
 				System.out.println("Tentando Remover ID: " + id);
 
 				System.out.println("Moeda: " + crypto.getSigla() + " removida com sucesso.");
+				break;
 			}
 		}
 
