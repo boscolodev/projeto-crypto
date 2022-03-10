@@ -1,16 +1,23 @@
 package br.com.boscolodev.projetocrypto.Class;
 
-import java.util.Scanner;
+import br.com.boscolodev.projetocrypto.DatabaseConnection.ConexaoMySQL;
+
+//import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Scanner scan = new Scanner(System.in);
-		Integer opcao = 0;
-		Crypto crypto = new Crypto();
+		//Scanner scan = new Scanner(System.in);
+		//Integer opcao = 0;
+		//Crypto crypto = new Crypto();
 		
+		ConexaoMySQL.getConexaoMySQL();
+		ConexaoMySQL.statusConexao();
+		
+		
+		/*
 		while (opcao != 5) {
 
 			System.out.println("------ Menu ------");
@@ -48,7 +55,7 @@ public class Main {
 			}
 			
 			
-		}
+		}*/
 	}
 
 }
