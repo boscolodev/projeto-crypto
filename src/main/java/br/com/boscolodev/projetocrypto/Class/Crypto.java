@@ -1,29 +1,31 @@
 package br.com.boscolodev.projetocrypto.Class;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+
+import br.com.boscolodev.projetocrypto.DAO.CryptoDAO;
+import br.com.boscolodev.projetocrypto.DTO.CryptoDTO;
 
 public class Crypto {
 
 	private Long id;
 	private String rede;
 	private String sigla;
-	private LocalDateTime dt_cadastro;
+	private String dt_cadastro;
 	Scanner scan = new Scanner(System.in);
 
-	List<Crypto> list = new ArrayList<>();
+	List<CryptoDTO> list = new ArrayList<>();
 
 	public Crypto() {
 	}
 
-	public Crypto(Long id, String rede, String sigla, LocalDateTime dt_cadastro) {
+	public Crypto(Long id, String rede, String sigla, String dt_cadastro) {
 		this.id = id;
 		this.rede = rede;
 		this.sigla = sigla;
-		this.dt_cadastro = LocalDateTime.now();
+		this.dt_cadastro = dt_cadastro;
 	}
 
 	public String getRede() {
@@ -42,11 +44,11 @@ public class Crypto {
 		this.sigla = sigla;
 	}
 
-	public LocalDateTime getDt_cadastro() {
+	public String getDt_cadastro() {
 		return dt_cadastro;
 	}
 
-	public void setDt_cadastro(LocalDateTime dt_cadastro) {
+	public void setDt_cadastro(String dt_cadastro) {
 		this.dt_cadastro = dt_cadastro;
 	}
 
@@ -87,27 +89,33 @@ public class Crypto {
 		rede = scan.next();
 		System.out.println("Digite a Silga: ");
 		sigla = scan.next();
-		dt_cadastro = LocalDateTime.now();
-		list.add(new Crypto(id, rede, sigla, dt_cadastro));
+		dt_cadastro = scan.next();
+		
+		//Envio os dados para o DTO
+		CryptoDTO cryptoDTO = new CryptoDTO(rede, sigla, dt_cadastro);
+		
+		//Cria um objeto DAO
+		CryptoDAO cryptoDAO = new CryptoDAO();
+		
+		//Informa os dados para o SQL vindo do DTO
+		cryptoDAO.insertCrypto(cryptoDTO);
 	}
 
 	// Deleta moeda por ID
 	public void deleteById() {
 		System.out.println("Digite o Id para ser deletado: ");
 		Long id = scan.nextLong();
-		
-		
-		for (Crypto crypto : list) {
 
-			if (crypto.getId().equals(id)) {
+		for (CryptoDTO cryptoDTO : list) {
 
-				System.out.println(crypto.toString());
-				list.remove(crypto);
-				
+			if (cryptoDTO.getId().equals(id)) {
+
+				System.out.println(cryptoDTO.toString());
+				list.remove(cryptoDTO);
 
 				System.out.println("Tentando Remover ID: " + id);
 
-				System.out.println("Moeda: " + crypto.getSigla() + " removida com sucesso.");
+				System.out.println("Moeda: " + cryptoDTO.getSigla() + " removida com sucesso.");
 				break;
 			}
 		}
@@ -118,24 +126,24 @@ public class Crypto {
 	public void pesquisarPorNome() {
 		System.out.println("Digite a Sigla para Pesquisa: ");
 		String nome = scan.next();
-		for (Crypto crypto : list) {
+		for (CryptoDTO cryptoDTO : list) {
 
-			if (nome.equals(crypto.getSigla()) == true) {
-				System.out.println("ID: " + crypto.getId());
-				System.out.println("Rede: " + crypto.getRede());
-				System.out.println("Sigla: " + crypto.getSigla());
-				System.out.println("Data: " + crypto.dt_cadastro);
+			if (nome.equals(cryptoDTO.getSigla()) == true) {
+				System.out.println("ID: " + cryptoDTO.getId());
+				System.out.println("Rede: " + cryptoDTO.getRede());
+				System.out.println("Sigla: " + cryptoDTO.getSigla());
+				System.out.println("Data: " + cryptoDTO.getDt_cadastro());
 			}
 
 		}
 	}
 
 	public void listarCrypto() {
-		for (Crypto crypto : list) {
-			System.out.println("ID: " + crypto.id);
-			System.out.println("Rede: " + crypto.rede);
-			System.out.println("Sigla: " + crypto.sigla);
-			System.out.println("Data Alteração: " + crypto.dt_cadastro);
+		for (CryptoDTO cryptoDTO : list) {
+			System.out.println("ID: " + cryptoDTO.getId());
+			System.out.println("Rede: " + cryptoDTO.getDt_cadastro());
+			System.out.println("Sigla: " + cryptoDTO.getSigla());
+			System.out.println("Data Alteração: " + cryptoDTO.getDt_cadastro());
 
 		}
 
