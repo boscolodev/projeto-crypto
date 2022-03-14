@@ -90,14 +90,14 @@ public class Crypto {
 		System.out.println("Digite a Silga: ");
 		sigla = scan.next();
 		dt_cadastro = scan.next();
-		
-		//Envio os dados para o DTO
+
+		// Envio os dados para o DTO
 		CryptoDTO cryptoDTO = new CryptoDTO(rede, sigla, dt_cadastro);
-		
-		//Cria um objeto DAO
+
+		// Cria um objeto DAO
 		CryptoDAO cryptoDAO = new CryptoDAO();
-		
-		//Informa os dados para o SQL vindo do DTO
+
+		// Informa os dados para o SQL vindo do DTO
 		cryptoDAO.insertCrypto(cryptoDTO);
 	}
 
@@ -105,47 +105,30 @@ public class Crypto {
 	public void deleteById() {
 		System.out.println("Digite o Id para ser deletado: ");
 		Long id = scan.nextLong();
+		CryptoDAO cryptoDAO = new CryptoDAO();
+		CryptoDTO cryptoDTO = new CryptoDTO();
+		if (id != null) {
 
-		for (CryptoDTO cryptoDTO : list) {
+			cryptoDAO.deleteCrypto(id);
+			System.out.println("Moeda: " + cryptoDTO.getSigla() + " removida com sucesso.");
 
-			if (cryptoDTO.getId().equals(id)) {
-
-				System.out.println(cryptoDTO.toString());
-				list.remove(cryptoDTO);
-
-				System.out.println("Tentando Remover ID: " + id);
-
-				System.out.println("Moeda: " + cryptoDTO.getSigla() + " removida com sucesso.");
-				break;
-			}
 		}
-
 	}
 
 	// Pesquisa moeda por Sigla
 	public void pesquisarPorNome() {
 		System.out.println("Digite a Sigla para Pesquisa: ");
 		String nome = scan.next();
-		for (CryptoDTO cryptoDTO : list) {
 
-			if (nome.equals(cryptoDTO.getSigla()) == true) {
-				System.out.println("ID: " + cryptoDTO.getId());
-				System.out.println("Rede: " + cryptoDTO.getRede());
-				System.out.println("Sigla: " + cryptoDTO.getSigla());
-				System.out.println("Data: " + cryptoDTO.getDt_cadastro());
-			}
+		CryptoDAO cryptoDAO = new CryptoDAO();
+		cryptoDAO.listByName(nome);
 
-		}
 	}
 
 	public void listarCrypto() {
-		for (CryptoDTO cryptoDTO : list) {
-			System.out.println("ID: " + cryptoDTO.getId());
-			System.out.println("Rede: " + cryptoDTO.getDt_cadastro());
-			System.out.println("Sigla: " + cryptoDTO.getSigla());
-			System.out.println("Data Alteração: " + cryptoDTO.getDt_cadastro());
 
-		}
+		CryptoDAO cryptoDAO = new CryptoDAO();
+		cryptoDAO.listAll();
 
 	}
 }
