@@ -25,6 +25,9 @@ public class CryptoDAO {
 			statement.setString(1, cryptoDTO.getRede());
 			statement.setString(2, cryptoDTO.getSigla());
 
+			//Informa o SQL
+			System.out.println(sql);
+			
 			statement.execute();
 			connection.close();
 		} catch (Exception e) {
