@@ -10,7 +10,7 @@ public class ConexaoMySQL {
 
 	
 	private static final String USUARIO = "root";
-	private static final String SENHA = "123456";
+	private static final String SENHA = "Qwerty00#";
 	private static final String URL = "jdbc:mysql://127.0.0.1:3306/crypto";
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
@@ -46,6 +46,7 @@ public class ConexaoMySQL {
 			return null;
 		}catch (SQLException e) {
 			System.out.println("Não foi possível conectar ao banco de dados.");
+			System.out.println("Exceção: "+e);
 			return null;
 		}
 		
