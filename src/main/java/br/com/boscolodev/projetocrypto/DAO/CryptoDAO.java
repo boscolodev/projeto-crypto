@@ -16,7 +16,7 @@ public class CryptoDAO {
 		try {
 
 			// Sql de comando
-			String sql = ("INSERT INTO CRYPTO(REDE, SIGLA)" + "VALUES(?,?)");
+			String sql = ("INSERT INTO CRYPTO(REDE, SIGLA, DT_CADASTRO)" + "VALUES(?,?,?)");
 
 			// Realiza a execução do código SQL
 			PreparedStatement statement = connection.prepareStatement(sql);
@@ -24,6 +24,7 @@ public class CryptoDAO {
 			// Informando os paremetros de posição e dados para ?
 			statement.setString(1, cryptoDTO.getRede());
 			statement.setString(2, cryptoDTO.getSigla());
+			statement.setString(3, cryptoDTO.getDt_cadastro());
 
 			// Informa o SQL
 			System.out.println(sql);
