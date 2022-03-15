@@ -13,7 +13,6 @@ public class CryptoDTO {
 	}
 	
 	public CryptoDTO(String rede, String sigla, String dt_cadastro) {
-		
 		this.rede = rede;
 		this.sigla = sigla;
 		this.dt_cadastro = dt_cadastro;
@@ -40,6 +39,11 @@ public class CryptoDTO {
 	public Long getId() {
 		return id;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 
 }

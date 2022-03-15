@@ -25,9 +25,9 @@ public class CryptoDAO {
 			statement.setString(1, cryptoDTO.getRede());
 			statement.setString(2, cryptoDTO.getSigla());
 
-			//Informa o SQL
+			// Informa o SQL
 			System.out.println(sql);
-			
+
 			statement.execute();
 			connection.close();
 		} catch (Exception e) {
@@ -81,23 +81,28 @@ public class CryptoDAO {
 		return cryptoDTO;
 	}
 
-	public Object listByName(String sigla) {
-		CryptoDTO cryptoDTO = new CryptoDTO();
+	public List<CryptoDTO> listByName(String sigla) {
+		List<CryptoDTO> cryptoDTO = new ArrayList<CryptoDTO>();
 
 		try {
 
 			Connection connection = ConexaoMySQL.getConexaoMySQL();
-			String sql = "SELECT ID, REDE, SIGLA FROM CRYPTO WHERE SIGLA = ?";
+			String sql = "SELECT ID_CRYPTO, REDE, SIGLA, DT_CADASTRO FROM CRYPTO WHERE SIGLA =  ?";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
-
+			statement.setString(1, sigla);
 			ResultSet resultSet = statement.executeQuery();
 
-			cryptoDTO.setRede(resultSet.getString("REDE"));
-			cryptoDTO.setSigla(resultSet.getString("SIGLA"));
-			cryptoDTO.setDt_cadastro(resultSet.getString("DT_CADASTRO"));
-			statement.setString(1, sigla);
-
+			while (resultSet.next()) {
+				CryptoDTO cryptoDTO1 = new CryptoDTO();
+				cryptoDTO1.setId(resultSet.getLong("ID"));
+				cryptoDTO1.setRede(resultSet.getString("REDE"));
+				cryptoDTO1.setSigla(resultSet.getString("SIGLA"));
+				cryptoDTO1.setDt_cadastro(resultSet.getString("DT_CADASTRO"));
+				cryptoDTO.add(cryptoDTO1);
+				System.out.println("ID: " + resultSet.getLong("ID") + " REDE: " + resultSet.getString("REDE")
+						+ " SIGLA: " + resultSet.getString("SIGLA") + " DATA: " + resultSet.getString("DT_CADASTRO"));
+			}
 			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
