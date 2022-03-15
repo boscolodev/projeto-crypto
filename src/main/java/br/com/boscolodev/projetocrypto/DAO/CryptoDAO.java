@@ -40,7 +40,7 @@ public class CryptoDAO {
 		try {
 
 			// Sql de comando
-			String sql = ("DELETE FROM CRYPTO WHERE = ID = ?");
+			String sql = ("DELETE FROM CRYPTO WHERE ID_CRYPTO = ?");
 
 			// Realiza a execução do código SQL
 			PreparedStatement statement = connection.prepareStatement(sql);
@@ -73,6 +73,8 @@ public class CryptoDAO {
 				cryptoDTO1.setSigla(resultSet.getString("SIGLA"));
 				cryptoDTO1.setDt_cadastro(resultSet.getString("DT_CADASTRO"));
 				cryptoDTO.add(cryptoDTO1);
+				System.out.println("ID: " + resultSet.getLong("ID_CRYPTO") + " REDE: " + resultSet.getString("REDE")
+				+ " SIGLA: " + resultSet.getString("SIGLA") + " DATA: " + resultSet.getString("DT_CADASTRO"));
 			}
 			connection.close();
 		} catch (Exception e) {
@@ -95,12 +97,12 @@ public class CryptoDAO {
 
 			while (resultSet.next()) {
 				CryptoDTO cryptoDTO1 = new CryptoDTO();
-				cryptoDTO1.setId(resultSet.getLong("ID"));
+				cryptoDTO1.setId(resultSet.getLong("ID_CRYPTO"));
 				cryptoDTO1.setRede(resultSet.getString("REDE"));
 				cryptoDTO1.setSigla(resultSet.getString("SIGLA"));
 				cryptoDTO1.setDt_cadastro(resultSet.getString("DT_CADASTRO"));
 				cryptoDTO.add(cryptoDTO1);
-				System.out.println("ID: " + resultSet.getLong("ID") + " REDE: " + resultSet.getString("REDE")
+				System.out.println("ID: " + resultSet.getLong("ID_CRYPTO") + " REDE: " + resultSet.getString("REDE")
 						+ " SIGLA: " + resultSet.getString("SIGLA") + " DATA: " + resultSet.getString("DT_CADASTRO"));
 			}
 			connection.close();
@@ -113,7 +115,7 @@ public class CryptoDAO {
 	public void updateCrypto(CryptoDTO cryptoDTO) {
 		try {
 			Connection connection = ConexaoMySQL.getConexaoMySQL();
-			String sql = "UPDATE CRYPTO SET REDE = ?, SIGLA = ? WHERE ID = ?";
+			String sql = "UPDATE CRYPTO SET REDE = ?, SIGLA = ? WHERE ID_CRYPTO = ?";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 

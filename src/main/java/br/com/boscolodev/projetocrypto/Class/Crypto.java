@@ -1,6 +1,9 @@
 package br.com.boscolodev.projetocrypto.Class;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -16,16 +19,20 @@ public class Crypto {
 	private String dt_cadastro;
 	Scanner scan = new Scanner(System.in);
 
+	Date dataAtual = new Date();
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    String dataFormatada = dateFormat.format(dataAtual);
+	
 	List<CryptoDTO> list = new ArrayList<>();
 
 	public Crypto() {
 	}
 
-	public Crypto(Long id, String rede, String sigla, String dt_cadastro) {
+	public Crypto(Long id, String rede, String sigla) {
 		this.id = id;
 		this.rede = rede;
 		this.sigla = sigla;
-		this.dt_cadastro = dt_cadastro;
+		this.dt_cadastro = dataFormatada;
 	}
 
 	public String getRede() {
@@ -83,8 +90,6 @@ public class Crypto {
 	}
 
 	public void cadastrarCrypto() {
-		System.out.println("Digite o ID: ");
-		id = scan.nextLong();
 		System.out.println("Digite a Rede: ");
 		rede = scan.next();
 		System.out.println("Digite a Silga: ");
@@ -92,7 +97,7 @@ public class Crypto {
 		dt_cadastro = scan.next();
 
 		// Envio os dados para o DTO
-		CryptoDTO cryptoDTO = new CryptoDTO(rede, sigla, dt_cadastro);
+		CryptoDTO cryptoDTO = new CryptoDTO(rede, sigla);
 
 		// Cria um objeto DAO
 		CryptoDAO cryptoDAO = new CryptoDAO();
