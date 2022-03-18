@@ -4,12 +4,14 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import br.com.boscolodev.projetocrypto.DAO.ClientDAO;
+import br.com.boscolodev.projetocrypto.DAO.ClientDetailDAO;
 import br.com.boscolodev.projetocrypto.DTO.ClientDTO;
+import br.com.boscolodev.projetocrypto.DTO.ClientDetailDTO;
 
 public class Client {
 
 	Scanner scan = new Scanner(System.in);
-	
+
 	private Long id;
 	private String nome;
 	private String email;
@@ -96,6 +98,8 @@ public class Client {
 	}
 
 	public void cadastrarClient() {
+		String option = null;
+
 		System.out.println("Digite o Nome: ");
 		nome = scan.next();
 		System.out.println("Digite o Email: ");
@@ -104,18 +108,33 @@ public class Client {
 		id_Carteira = scan.nextLong();
 		System.out.println("Digite a Crypto: ");
 		id_Crypto = scan.nextLong();
-		
 
-		// Envio os dados para o DTO
+		System.out.println("Desejar Inserir Alguma Crypto Moeda em Sua Carteira ? (s/n)");
+		option = scan.next();
+
+		// Envio os dados para o DTO Mestre
 		ClientDTO clientDTO = new ClientDTO(nome, email, id_Carteira, id_Crypto);
+
+		while (option == "s") {
+			id = getId();
+			System.out.println("Digite a Cateira: ");
+			id_Carteira = scan.nextLong();
+			System.out.println("Digite a Crypto: ");
+			id_Crypto = scan.nextLong();
+
+			//Inicia um Objeto DTO Detalhe para a primeira informação
+			ClientDetailDTO clientDetailDTO = new ClientDetailDTO(id, id_Carteira, id_Crypto);
+			//Cria um Detalhe DAO
+			ClientDetailDAO clientDetailDAO = new ClientDetailDAO();
+			//Injeta o SQL com os dados do registro do detalhe
+			clientDetailDAO.insertDetail(clientDetailDTO);
+		}
 
 		// Cria um objeto DAO
 		ClientDAO clientDAO = new ClientDAO();
 
-
 		// Informa os dados para o SQL vindo do DTO
 		clientDAO.insertClient(clientDTO);
 	}
-	
-	
+
 }
