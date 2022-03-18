@@ -1,8 +1,6 @@
 package br.com.boscolodev.projetocrypto.DTO;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import br.com.boscolodev.projetocrypto.Class.DataF;
 
 public class CryptoDTO {
 
@@ -16,14 +14,11 @@ public class CryptoDTO {
 	}
 	
 	public CryptoDTO(String rede, String sigla) {
-		
-        Date dataAtual = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dataFormatada = dateFormat.format(dataAtual);
+
 				
 		this.rede = rede;
 		this.sigla = sigla;
-		this.dt_cadastro = dataFormatada;
+		this.dt_cadastro = DataF.dataFormatada();
 	}
 	
 	public String getRede() {
