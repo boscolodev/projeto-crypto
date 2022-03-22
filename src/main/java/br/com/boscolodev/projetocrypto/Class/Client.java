@@ -149,4 +149,15 @@ public class Client {
 
 	}
 
+	public void listClientByID() {
+		Long id = null;
+		
+		System.out.println("Digite o ID: ");
+		id = scan.nextLong();	
+		
+		ClientDAO clientDAO = new ClientDAO();
+		clientDAO.listarClientByID(id);
+		
+	}
+
 }

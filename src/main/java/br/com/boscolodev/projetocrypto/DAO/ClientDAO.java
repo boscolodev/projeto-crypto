@@ -116,4 +116,60 @@ public class ClientDAO {
 		}
 	}
 
+	public void listarClientByID(Long id) {
+
+		try {
+
+			Connection connection = ConexaoMySQL.getConexaoMySQL();
+			String sqlClient = "SELECT ID_CLIENT, NOME, EMAIL, ID_CLIENT_DETAIL,ID_CARTEIRA, DT_CADASTRO FROM CLIENT WHERE ID_CLIENT = ?";
+			String sqlDetail = "SELECT ID_CLIENT, ID_CLIENT_DETAIL, ID_CARTEIRA, ID_CRYPTO FROM CLIENT_DETAIL WHERE ID_CLIENT = ?";
+
+			PreparedStatement statementClient = connection.prepareStatement(sqlClient);
+			PreparedStatement statementDetail = connection.prepareStatement(sqlDetail);
+			
+			statementClient.setLong(1, id);
+			statementDetail.setLong(1, id);
+			
+			ResultSet resultSetClient = statementClient.executeQuery();
+			ResultSet resultSetDetail = statementDetail.executeQuery();
+
+
+			while (resultSetClient.next()) {
+				ClientDTO clientDTO = new ClientDTO();
+				clientDTO.setId(resultSetClient.getLong("ID_CLIENT"));
+				clientDTO.setNome(resultSetClient.getString("NOME"));
+				clientDTO.setEmail(resultSetClient.getString("EMAIL"));
+				clientDTO.setId_Crypto(resultSetClient.getLong("ID_CLIENT_DETAIL"));
+				clientDTO.setId_Carteira(resultSetClient.getLong("ID_CARTEIRA"));
+				clientDTO.setDt_Cadastro(resultSetClient.getString("DT_CADASTRO"));
+
+				System.out.println("Id Cliente: " + resultSetClient.getLong("ID_CLIENT") + " Nome: "
+						+ resultSetClient.getNString("NOME") + " Email: " + resultSetClient.getNString("EMAIL")
+						+ " ID Detalhe: " + resultSetClient.getLong("ID_CLIENT_DETAIL") + " ID Carteira: "
+						+ resultSetClient.getLong("ID_CARTEIRA") + " DT_CADASTRO:"
+						+ resultSetClient.getString("DT_CADASTRO"));
+			}
+			
+			while(resultSetDetail.next()){	
+				ClientDetailDTO clientDetailDTO = new ClientDetailDTO();
+				clientDetailDTO.setId(resultSetDetail.getLong("ID_CLIENT_DETAIL"));
+				clientDetailDTO.setId_Client(resultSetDetail.getLong("ID_CLIENT"));
+				clientDetailDTO.setId(resultSetDetail.getLong("ID_CARTEIRA"));
+				clientDetailDTO.setId(resultSetDetail.getLong("ID_CRYPTO"));
+
+				System.out.println(" ID Cliente Detail: " + resultSetDetail.getLong("ID_CLIENT_DETAIL")
+						+ " ID Cliente Detail: " + resultSetDetail.getLong("ID_CLIENT") + " ID_Carteira Detail: "
+						+ resultSetDetail.getLong("ID_CARTEIRA") + " ID Crypto Detail: "
+						+ resultSetDetail.getLong("ID_CRYPTO"));
+
+			}
+
+			connection.close();
+		} catch (
+
+		Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

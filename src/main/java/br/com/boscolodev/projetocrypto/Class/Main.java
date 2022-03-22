@@ -28,6 +28,8 @@ public class Main {
 			System.out.println("4 - Exibir Cryptos Cadastradas");
 			System.out.println("5 - Sair");
 			System.out.println("6 - Cadastro de Cliente");
+			System.out.println("7 - Listar Todos Clientes e Cryptos");
+			System.out.println("8 - Listar Clientes e Cryptos por ID");
 			System.out.println("Escolha Opção Desejada: ");
 			opcao = scan.nextInt();
 
@@ -58,6 +60,10 @@ public class Main {
 			}
 			case 7:{
 				client.listarClient();
+				break;
+			}
+			case 8: {
+				client.listClientByID();
 				break;
 			}
 			default:
