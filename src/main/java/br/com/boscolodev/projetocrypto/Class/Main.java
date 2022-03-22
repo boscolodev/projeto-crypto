@@ -14,12 +14,11 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		Integer opcao = 0;
 		Crypto crypto = new Crypto();
-		
+		Client client = new Client();
+
 		ConexaoMySQL.getConexaoMySQL();
 		System.out.println(ConexaoMySQL.statusConexao());
-		
-		
-		
+
 		while (opcao != 5) {
 
 			System.out.println("------ Menu ------");
@@ -28,6 +27,7 @@ public class Main {
 			System.out.println("3 - Deletar Moeda Por ID");
 			System.out.println("4 - Exibir Cryptos Cadastradas");
 			System.out.println("5 - Sair");
+			System.out.println("6 - Cadastro de Cliente");
 			System.out.println("Escolha Opção Desejada: ");
 			opcao = scan.nextInt();
 
@@ -52,11 +52,13 @@ public class Main {
 				scan.close();
 				break;
 			}
+			case 6: {
+				client.cadastrarClient();
+			}
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + opcao);
 			}
-			
-			
+
 		}
 	}
 

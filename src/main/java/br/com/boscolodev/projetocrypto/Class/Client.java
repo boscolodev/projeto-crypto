@@ -99,6 +99,7 @@ public class Client {
 
 	public void cadastrarClient() {
 		String option = null;
+		Long idRetorno = 0L;
 
 		System.out.println("Digite o Nome: ");
 		nome = scan.next();
@@ -109,32 +110,38 @@ public class Client {
 		System.out.println("Digite a Crypto: ");
 		id_Crypto = scan.nextLong();
 
-		System.out.println("Desejar Inserir Alguma Crypto Moeda em Sua Carteira ? (s/n)");
-		option = scan.next();
-
 		// Envio os dados para o DTO Mestre
 		ClientDTO clientDTO = new ClientDTO(nome, email, id_Carteira, id_Crypto);
-
-		while (option == "s") {
-			id = getId();
-			System.out.println("Digite a Cateira: ");
-			id_Carteira = scan.nextLong();
-			System.out.println("Digite a Crypto: ");
-			id_Crypto = scan.nextLong();
-
-			//Inicia um Objeto DTO Detalhe para a primeira informação
-			ClientDetailDTO clientDetailDTO = new ClientDetailDTO(id, id_Carteira, id_Crypto);
-			//Cria um Detalhe DAO
-			ClientDetailDAO clientDetailDAO = new ClientDetailDAO();
-			//Injeta o SQL com os dados do registro do detalhe
-			clientDetailDAO.insertDetail(clientDetailDTO);
-		}
-
 		// Cria um objeto DAO
 		ClientDAO clientDAO = new ClientDAO();
-
 		// Informa os dados para o SQL vindo do DTO
 		clientDAO.insertClient(clientDTO);
+
+		// Long retorno = clientDAO.retornoIdClient(clientDTO);
+		clientDAO.retornoIdClient(clientDTO);
+		idRetorno = clientDAO.retornoIdClient(clientDTO);
+		System.out.println("ID DE RETORNO:" +idRetorno);
+		
+		do {
+
+			// ID da tabela Cliente para chave estrangeira da tabela detalhe
+			System.out.println("Digite o ID da Crypto: ");
+			id_Crypto = scan.nextLong();
+
+			// Inicia um Objeto DTO Detalhe para a primeira informação
+			ClientDetailDTO clientDetailDTO = new ClientDetailDTO(idRetorno, clientDTO.getId_Carteira(),
+					id_Crypto);
+
+			// Cria um Detalhe DAO
+			ClientDetailDAO clientDetailDAO = new ClientDetailDAO();
+			// Injeta o SQL com os dados do registro do detalhe
+
+			clientDetailDAO.insertDetail(clientDetailDTO);
+
+			System.out.println("Desejar Inserir Alguma Crypto Moeda em Sua Carteira ? (s/n)");
+			option = scan.next();
+		} while (option == "s");
+
 	}
 
 }
