@@ -102,7 +102,7 @@ public class Client {
 		Long idRetorno = 0L;
 
 		System.out.println("Digite o Nome: ");
-		nome = scan.next();
+		nome = scan.next();		
 		System.out.println("Digite o Email: ");
 		email = scan.next();
 		System.out.println("Digite a Carteira: ");
@@ -120,8 +120,7 @@ public class Client {
 		// Long retorno = clientDAO.retornoIdClient(clientDTO);
 		clientDAO.retornoIdClient(clientDTO);
 		idRetorno = clientDAO.retornoIdClient(clientDTO);
-		System.out.println("ID DE RETORNO:" +idRetorno);
-		
+
 		do {
 
 			// ID da tabela Cliente para chave estrangeira da tabela detalhe
@@ -129,8 +128,7 @@ public class Client {
 			id_Crypto = scan.nextLong();
 
 			// Inicia um Objeto DTO Detalhe para a primeira informação
-			ClientDetailDTO clientDetailDTO = new ClientDetailDTO(idRetorno, clientDTO.getId_Carteira(),
-					id_Crypto);
+			ClientDetailDTO clientDetailDTO = new ClientDetailDTO(idRetorno, clientDTO.getId_Carteira(), id_Crypto);
 
 			// Cria um Detalhe DAO
 			ClientDetailDAO clientDetailDAO = new ClientDetailDAO();
@@ -140,7 +138,14 @@ public class Client {
 
 			System.out.println("Desejar Inserir Alguma Crypto Moeda em Sua Carteira ? (s/n)");
 			option = scan.next();
+
 		} while (option == "s");
+		System.out.println("Opção do Scanner: " + option);
+	}
+
+	public void listarClient() {
+		ClientDAO clientDAO = new ClientDAO();
+		clientDAO.listarClient();
 
 	}
 

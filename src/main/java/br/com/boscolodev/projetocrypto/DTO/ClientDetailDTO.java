@@ -6,6 +6,7 @@ public class ClientDetailDTO {
 	private Long id_Client;
 	private Long id_Carteira;
 	private Long id_Crypto;
+	
 	public Long getId() {
 		return id;
 	}

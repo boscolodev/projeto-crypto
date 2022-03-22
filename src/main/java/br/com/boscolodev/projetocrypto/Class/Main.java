@@ -54,6 +54,11 @@ public class Main {
 			}
 			case 6: {
 				client.cadastrarClient();
+				break;
+			}
+			case 7:{
+				client.listarClient();
+				break;
 			}
 			default:
 				throw new IllegalArgumentException("Unexpected value: " + opcao);
