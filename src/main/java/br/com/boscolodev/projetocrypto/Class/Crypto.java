@@ -93,6 +93,7 @@ public class Crypto {
 		System.out.println("Digite a Rede: ");
 		rede = scan.next();
 		System.out.println("Digite a Silga: ");
+		scan = new Scanner(System.in);
 		sigla = scan.next();
 		dt_cadastro = scan.next();
 
@@ -109,6 +110,7 @@ public class Crypto {
 	// Deleta moeda por ID
 	public void deleteById() {
 		System.out.println("Digite o Id para ser deletado: ");
+		scan = new Scanner(System.in);
 		Long id = scan.nextLong();
 		CryptoDAO cryptoDAO = new CryptoDAO();
 		CryptoDTO cryptoDTO = new CryptoDTO();
@@ -123,6 +125,7 @@ public class Crypto {
 	// Pesquisa moeda por Sigla
 	public void pesquisarPorNome() {
 		System.out.println("Digite a Sigla para Pesquisa: ");
+		scan = new Scanner(System.in);
 		String nome = scan.next();
 
 		CryptoDAO cryptoDAO = new CryptoDAO();
