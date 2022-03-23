@@ -137,6 +137,7 @@ public class Client {
 			clientDetailDAO.insertDetail(clientDetailDTO);
 
 			System.out.println("Desejar Inserir Alguma Crypto Moeda em Sua Carteira ? (s/n)");
+			scan = new Scanner(System.in);
 			option = scan.next();
 
 		} while (option == "s");

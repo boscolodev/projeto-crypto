@@ -15,6 +15,8 @@ public class CryptoDAO {
 		Connection connection = ConexaoMySQL.getConexaoMySQL();
 		try {
 
+			connection.setAutoCommit(false);
+			
 			// Sql de comando
 			String sql = ("INSERT INTO CRYPTO(REDE, SIGLA, DT_CADASTRO)" + "VALUES(?,?,?)");
 
@@ -30,6 +32,7 @@ public class CryptoDAO {
 			System.out.println(sql);
 
 			statement.execute();
+			connection.commit();
 			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
