@@ -8,7 +8,7 @@ import br.com.boscolodev.projetocrypto.DatabaseConnection.ConexaoMySQL;
 
 public class Main {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		Scanner scan = new Scanner(System.in);
@@ -23,51 +23,34 @@ public class Main {
 
 			System.out.println("------ Menu ------");
 			System.out.println("1 - Cadastrar Crypto Moedas");
-			System.out.println("2 - Consultar Crypto por Nome");
-			System.out.println("3 - Deletar Moeda Por ID");
-			System.out.println("4 - Exibir Cryptos Cadastradas");
-			System.out.println("5 - Sair");
-			System.out.println("6 - Cadastro de Cliente");
-			System.out.println("7 - Listar Todos Clientes e Cryptos");
-			System.out.println("8 - Listar Clientes e Cryptos por ID");
+			System.out.println("12 - Consultar Crypto por Nome");
+			System.out.println("13 - Deletar Moeda por ID");
+			System.out.println("14 - Atualizar moeda por Nome");
+			System.out.println("15 - Exibir Todas Moedas Cadastradas");
+			System.out.println("2 - Cadastro de Cliente");
+			System.out.println("21 - Listar Todos Clientes e Cryptos");
+			System.out.println("22 - Listar Clientes e Cryptos por ID");
+			System.out.println("23 - Atualizar Clientes e Cryptos por ID");
+			System.out.println("24 - Deletar Cryptos por ID");
+			System.out.println("0 - Sair");
+
+
 			System.out.println("Escolha Opção Desejada: ");
 			opcao = scan.nextInt();
 
 			switch (opcao) {
-			case 1: {
-				crypto.cadastrarCrypto();
-				break;
-			}
-			case 2: {
-				crypto.pesquisarPorNome();
-				break;
-			}
-			case 3: {
-				crypto.deleteById();
-				break;
-			}
-			case 4: {
-				crypto.listarCrypto();
-				break;
-			}
-			case 5: {
-				scan.close();
-				break;
-			}
-			case 6: {
-				client.cadastrarClient();
-				break;
-			}
-			case 7:{
-				client.listarClient();
-				break;
-			}
-			case 8: {
-				client.listClientByID();
-				break;
-			}
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + opcao);
+				case 1 -> crypto.cadastrarCrypto();
+				case 12 -> crypto.pesquisarPorNome();
+				case 13 -> crypto.deleteById();
+				case 14 -> crypto.updateById();
+				case 15 -> crypto.listarCrypto();
+				case 2 -> client.cadastrarClient();
+				case 21 -> client.listarClient();
+				case 22 -> client.listClientByID();
+				//case 23 -> client.updateById();
+				case 24 -> client.deleteById();
+				case 0 -> scan.close();
+				default -> throw new IllegalArgumentException("Unexpected value: " + opcao);
 			}
 
 		}

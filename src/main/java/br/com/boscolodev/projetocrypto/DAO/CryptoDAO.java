@@ -29,7 +29,7 @@ public class CryptoDAO {
 			statement.setString(3, cryptoDTO.getDt_cadastro());
 
 			// Informa o SQL
-			System.out.println(sql);
+			//System.out.println(sql);
 
 			statement.execute();
 			connection.commit();
@@ -116,16 +116,16 @@ public class CryptoDAO {
 		return cryptoDTO;
 	}
 
-	public void updateCrypto(CryptoDTO cryptoDTO) {
+	public void updateCrypto(Long id, String rede, String sigla) {
 		try {
 			Connection connection = ConexaoMySQL.getConexaoMySQL();
 			String sql = "UPDATE CRYPTO SET REDE = ?, SIGLA = ? WHERE ID_CRYPTO = ?";
 
 			PreparedStatement statement = connection.prepareStatement(sql);
 
-			statement.setString(1, cryptoDTO.getRede());
-			statement.setString(2, cryptoDTO.getSigla());
-			statement.setLong(3, cryptoDTO.getId());
+			statement.setString(1, rede);
+			statement.setString(2, sigla);
+			statement.setLong(3, id);
 
 			statement.execute();
 			statement.close();

@@ -95,7 +95,6 @@ public class Crypto {
 		System.out.println("Digite a Silga: ");
 		scan = new Scanner(System.in);
 		sigla = scan.next();
-		dt_cadastro = scan.next();
 
 		// Envio os dados para o DTO
 		CryptoDTO cryptoDTO = new CryptoDTO(rede, sigla);
@@ -117,7 +116,7 @@ public class Crypto {
 		if (id != null) {
 
 			cryptoDAO.deleteCrypto(id);
-			System.out.println("Moeda: " + cryptoDTO.getSigla() + " removida com sucesso.");
+			System.out.println("Moeda removida com sucesso.");
 
 		}
 	}
@@ -137,6 +136,26 @@ public class Crypto {
 
 		CryptoDAO cryptoDAO = new CryptoDAO();
 		cryptoDAO.listAll();
+
+	}
+
+	public void updateById() {
+
+		Long id = null;
+		String rede = null;
+		String sigla = null;
+
+		scan = new Scanner(System.in);
+
+		System.out.println("Digite o ID: ");
+		id = scan.nextLong();
+		System.out.println("Digite a REDE: ");
+		rede = scan.next();
+		System.out.println("Digite a Sigla: ");
+		sigla  = scan.next();
+
+		CryptoDAO cryptoDAO = new CryptoDAO();
+		cryptoDAO.updateCrypto(id, rede, sigla);
 
 	}
 }

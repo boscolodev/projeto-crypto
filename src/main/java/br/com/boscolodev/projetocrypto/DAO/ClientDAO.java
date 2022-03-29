@@ -171,5 +171,24 @@ public class ClientDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public void deleteClient(Long id) {
+		Connection connection = ConexaoMySQL.getConexaoMySQL();
+		try {
+
+			// Sql de comando
+			String sql = ("DELETE FROM CLIENT WHERE ID_CLIENT = ?");
+
+			// Realiza a execução do código SQL
+			PreparedStatement statement = connection.prepareStatement(sql);
+
+			// Informando os paremetros de posição e dados para ?
+			statement.setLong(1, id);
+
+			statement.execute();
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

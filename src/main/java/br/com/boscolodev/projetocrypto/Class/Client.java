@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import br.com.boscolodev.projetocrypto.DAO.ClientDAO;
 import br.com.boscolodev.projetocrypto.DAO.ClientDetailDAO;
+import br.com.boscolodev.projetocrypto.DAO.CryptoDAO;
 import br.com.boscolodev.projetocrypto.DTO.ClientDTO;
 import br.com.boscolodev.projetocrypto.DTO.ClientDetailDTO;
+import br.com.boscolodev.projetocrypto.DTO.CryptoDTO;
 
 public class Client {
 
@@ -98,11 +100,16 @@ public class Client {
 	}
 
 	public void cadastrarClient() {
+		String nome1 = null;
 		String option = null;
 		Long idRetorno = 0L;
 
+		scan = new Scanner(System.in);
+
 		System.out.println("Digite o Nome: ");
-		nome = scan.next();		
+		nome= scan.next();
+		nome = nome.trim();
+
 		System.out.println("Digite o Email: ");
 		email = scan.next();
 		System.out.println("Digite a Carteira: ");
@@ -161,4 +168,18 @@ public class Client {
 		
 	}
 
+	public void deleteById() {
+		Long id = null;
+		System.out.println("Digite o ID do Cliente: ");
+		id = scan.nextLong();
+
+		ClientDAO clientDAO = new ClientDAO();
+		ClientDTO clientDTO = new ClientDTO();
+
+		if (id != null){
+			clientDAO.deleteClient(id);
+			System.out.println("Cliente Removido com sucesso !");
+		}
+
+	}
 }
