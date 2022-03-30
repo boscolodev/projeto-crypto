@@ -14,12 +14,11 @@ public class Client {
 
 	Scanner scan = new Scanner(System.in);
 
-	
-	@Autowired
-	ClientDTO clientDTO;
-	
-	@Autowired
-	ClientDAO clientDAO;
+	/*
+	 * @Autowired ClientDTO clientDTO;
+	 * 
+	 * @Autowired ClientDAO clientDAO;
+	 */
 
 	private Long id;
 	private String nome;
@@ -27,7 +26,7 @@ public class Client {
 	private Long id_Carteira;
 	private Long id_Crypto;
 	private String dt_Cadastro;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -107,14 +106,14 @@ public class Client {
 	}
 
 	public void cadastrarClient() {
-		String nome1 = null;
+
 		String option = null;
 		Long idRetorno = 0L;
 
 		scan = new Scanner(System.in);
 
 		System.out.println("Digite o Nome: ");
-		nome= scan.next();
+		nome = scan.next();
 		nome = nome.trim();
 
 		System.out.println("Digite o Email: ");
@@ -154,29 +153,32 @@ public class Client {
 			scan = new Scanner(System.in);
 			option = scan.next();
 
-		} while (option == "s");
+		} while ("s".equals(option));
 		System.out.println("Opção do Scanner: " + option);
 	}
 
 	public void listarClient() {
+		ClientDAO clientDAO = new ClientDAO();
 		clientDAO.listarClient();
 
 	}
 
 	public void listClientByID() {
-		
+
 		System.out.println("Digite o ID: ");
-		id = scan.nextLong();	
-		
+		id = scan.nextLong();
+
+		ClientDAO clientDAO = new ClientDAO();
 		clientDAO.listarClientByID(id);
-		
+
 	}
 
 	public void deleteById() {
 		System.out.println("Digite o ID do Cliente: ");
 		id = scan.nextLong();
 
-		if (id != null){
+		if (id != null) {
+			ClientDAO clientDAO = new ClientDAO();
 			clientDAO.deleteClient(id);
 			System.out.println("Cliente Removido com sucesso !");
 		}
