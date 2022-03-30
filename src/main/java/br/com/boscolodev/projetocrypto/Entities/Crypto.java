@@ -1,4 +1,4 @@
-package br.com.boscolodev.projetocrypto.Class;
+package br.com.boscolodev.projetocrypto.Entities;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,11 +8,16 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.boscolodev.projetocrypto.DAO.CryptoDAO;
 import br.com.boscolodev.projetocrypto.DTO.CryptoDTO;
 
 public class Crypto {
 
+	@Autowired
+	CryptoDAO cryptoDAO;
+	
 	private Long id;
 	private String rede;
 	private String sigla;
@@ -111,8 +116,7 @@ public class Crypto {
 		System.out.println("Digite o Id para ser deletado: ");
 		scan = new Scanner(System.in);
 		Long id = scan.nextLong();
-		CryptoDAO cryptoDAO = new CryptoDAO();
-		CryptoDTO cryptoDTO = new CryptoDTO();
+
 		if (id != null) {
 
 			cryptoDAO.deleteCrypto(id);

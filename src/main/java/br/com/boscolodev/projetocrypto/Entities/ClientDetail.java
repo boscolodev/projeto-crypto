@@ -1,4 +1,4 @@
-package br.com.boscolodev.projetocrypto.Class;
+package br.com.boscolodev.projetocrypto.Entities;
 
 import java.util.Objects;
 import java.util.Scanner;
