@@ -113,7 +113,7 @@ public class Client {
 		scan = new Scanner(System.in);
 
 		System.out.println("Digite o Nome: ");
-		nome = scan.next();
+		nome = scan.nextLine();
 		nome = nome.trim();
 
 		System.out.println("Digite o Email: ");

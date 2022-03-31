@@ -96,7 +96,7 @@ public class Crypto {
 
 	public void cadastrarCrypto() {
 		System.out.println("Digite a Rede: ");
-		rede = scan.next();
+		rede = scan.nextLine();
 		System.out.println("Digite a Silga: ");
 		scan = new Scanner(System.in);
 		sigla = scan.next();
