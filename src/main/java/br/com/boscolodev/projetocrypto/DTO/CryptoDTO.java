@@ -1,6 +1,6 @@
 package br.com.boscolodev.projetocrypto.DTO;
 
-import br.com.boscolodev.projetocrypto.Class.DataF;
+import br.com.boscolodev.projetocrypto.Util.DataF;
 
 public class CryptoDTO {
 

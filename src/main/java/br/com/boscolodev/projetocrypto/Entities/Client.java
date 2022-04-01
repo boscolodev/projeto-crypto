@@ -1,18 +1,25 @@
-package br.com.boscolodev.projetocrypto.Class;
+package br.com.boscolodev.projetocrypto.Entities;
 
 import java.util.Objects;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import br.com.boscolodev.projetocrypto.DAO.ClientDAO;
 import br.com.boscolodev.projetocrypto.DAO.ClientDetailDAO;
-import br.com.boscolodev.projetocrypto.DAO.CryptoDAO;
 import br.com.boscolodev.projetocrypto.DTO.ClientDTO;
 import br.com.boscolodev.projetocrypto.DTO.ClientDetailDTO;
-import br.com.boscolodev.projetocrypto.DTO.CryptoDTO;
 
 public class Client {
 
 	Scanner scan = new Scanner(System.in);
+
+	
+	@Autowired
+	ClientDTO clientDTO;
+	
+	@Autowired
+	ClientDAO clientDAO;
 
 	private Long id;
 	private String nome;
@@ -20,7 +27,7 @@ public class Client {
 	private Long id_Carteira;
 	private Long id_Crypto;
 	private String dt_Cadastro;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -152,29 +159,22 @@ public class Client {
 	}
 
 	public void listarClient() {
-		ClientDAO clientDAO = new ClientDAO();
 		clientDAO.listarClient();
 
 	}
 
 	public void listClientByID() {
-		Long id = null;
 		
 		System.out.println("Digite o ID: ");
 		id = scan.nextLong();	
 		
-		ClientDAO clientDAO = new ClientDAO();
 		clientDAO.listarClientByID(id);
 		
 	}
 
 	public void deleteById() {
-		Long id = null;
 		System.out.println("Digite o ID do Cliente: ");
 		id = scan.nextLong();
-
-		ClientDAO clientDAO = new ClientDAO();
-		ClientDTO clientDTO = new ClientDTO();
 
 		if (id != null){
 			clientDAO.deleteClient(id);

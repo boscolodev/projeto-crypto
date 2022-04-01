@@ -1,4 +1,4 @@
-package br.com.boscolodev.projetocrypto.Class;
+package br.com.boscolodev.projetocrypto.Util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

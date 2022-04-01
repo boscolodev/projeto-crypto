@@ -3,6 +3,8 @@ package br.com.boscolodev.projetocrypto.Class;
 import java.util.Scanner;
 
 import br.com.boscolodev.projetocrypto.DatabaseConnection.ConexaoMySQL;
+import br.com.boscolodev.projetocrypto.Entities.Client;
+import br.com.boscolodev.projetocrypto.Entities.Crypto;
 
 //import java.util.Scanner;
 
