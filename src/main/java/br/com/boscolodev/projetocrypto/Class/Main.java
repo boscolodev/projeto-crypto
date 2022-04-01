@@ -14,14 +14,14 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Scanner scan = new Scanner(System.in);
-		Integer opcao = 0;
+		Integer opcao = -1;
 		Crypto crypto = new Crypto();
 		Client client = new Client();
 
 		ConexaoMySQL.getConexaoMySQL();
 		System.out.println(ConexaoMySQL.statusConexao());
 
-		while (opcao != 5) {
+		while (opcao != 0) {
 
 			System.out.println("------ Menu ------");
 			System.out.println("1 - Cadastrar Crypto Moedas");
